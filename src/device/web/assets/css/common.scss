@@ -1,0 +1,34 @@
+
+@import '//at.alicdn.com/t/font_534181_zr6mbm42d8cl3di.css';
+
+html,body{
+    height:100%;
+    width:100%;
+}
+body{
+    font-family:微软雅黑;
+    margin:0;
+    padding:0;
+    background: #FFF;
+    font-size:16px;
+    color:#000;
+}
+li{
+  list-style: none;
+}
+div,form,img,ul,ol,li,dl,dt,dd,p{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+input,select,button{
+  outline: none;
+}
+.mask{
+  width:100%;
+  height:100%;
+  position: relative;
+  background-color: rgba(0,0,0,.3);
+}
+
+
