@@ -41,7 +41,7 @@ app.get('/token',function(req,res){
 
 //前/后台登录接口
 app.post('/login',jsonParser,function(req,res){
-    var decrypted  = crypto.privateDecrypt(keys.privKey,Buffer.from(req.body.passward));
+    var decrypted  = crypto.privateDecrypt(keys.privKey,Buffer.from(req.body.password));
     //连接表
     var collection = db.collection('user');
     //查询数据
@@ -65,9 +65,11 @@ app.post('/login',jsonParser,function(req,res){
 
 //前台注册
 app.post('/web/register',jsonParser,function(req,res){
-    console.log(Buffer.from(req.body.password,'hex'),req.body.password)
-    var decrypted  = crypto.privateDecrypt(keys.privKey,Buffer.from(req.body.passward,'hex'));
-  console.log(decrypted);
+    /**
+     * Buffer.from(req.body.password,'hex'), 密码是加密后的字符串，转成Buffer解密
+     */
+    var decrypted  = crypto.privateDecrypt(keys.privKey,Buffer.from(req.body.password,'hex')).toString();
+    console.log(decrypted);
     //连接表
     var collection = db.collection('user');
     //查询数据

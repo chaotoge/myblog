@@ -5,7 +5,7 @@
       <input type="text" placeholder="手机号码/邮箱" v-model="user.name">
     </div>
     <div class="password">
-      <input type="password" placeholder="密码" v-model="user.passward">
+      <input type="password" placeholder="密码" v-model="user.password">
     </div>
     <div class="login-botton">
       <button @click = "register">注册</button>
@@ -30,9 +30,9 @@
     },
     methods:{
       register(){
-        var pulickey = getItem('pulickey');
-        console.log(crypto.publicEncrypt(pulickey, Buffer.from(this.user.password)))
-        var encrypted = crypto.publicEncrypt(pulickey, Buffer.from(this.user.password,'ascii')).toString('hex');
+        var pulickey = getItem('pulickey');  
+        //crypto 加密后返回Buffer ，将buffer转成字符串     
+        var encrypted = crypto.publicEncrypt(pulickey, Buffer.from(this.user.password)).toString('hex');
         this.$store.dispatch('register',{"name":this.user.name,"password":encrypted});
       }
     }
