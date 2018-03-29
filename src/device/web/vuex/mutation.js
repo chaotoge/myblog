@@ -4,7 +4,7 @@
 export default {
   //注册
   register:(state,res) => {
-    state.user = '@chaotoge'
+        
   },
   //登录
   login:(state,res) => {

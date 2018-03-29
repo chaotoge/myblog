@@ -41,24 +41,24 @@ app.get('/token',function(req,res){
 
 //前/后台登录接口
 app.post('/login',jsonParser,function(req,res){
-    var decrypted  = crypto.privateDecrypt(keys.privKey,Buffer.from(req.body.password));
+    //密码解密
+    var decrypted  = crypto.privateDecrypt(keys.privKey,Buffer.from(req.body.password,'hex')).toString();
     //连接表
     var collection = db.collection('user');
-    //查询数据
+    //查询数据 用户名==req.body.name password == req.body.password
     collection.find({"name":req.body.name,"password":decrypted}).toArray(function(err,result){
       if(err){
         console.log('Error'+err);
         return;
       }
-      console.log(result)
       if(result.length == 1){
-        sendData.code = 0;
+        sendData.code = 200;
         sendData.massage = "等录成功！";
         res.status(200).send(sendData);
       }else{
         sendData.code = 20;
         sendData.massage = "用户名或者密码错误";
-        res.status(201).send(sendData);
+        res.status(200).send(sendData);
       }
     })
 })
@@ -69,12 +69,12 @@ app.post('/web/register',jsonParser,function(req,res){
      * Buffer.from(req.body.password,'hex'), 密码是加密后的字符串，转成Buffer解密
      */
     var decrypted  = crypto.privateDecrypt(keys.privKey,Buffer.from(req.body.password,'hex')).toString();
-    console.log(decrypted);
     //连接表
     var collection = db.collection('user');
     //查询数据
     collection.find({"name":req.body.name}).toArray(function(err,result){
       if(err){
+        res.status(500).send(sendData);
         console.log('Error'+err);
         return;
       }
@@ -83,15 +83,19 @@ app.post('/web/register',jsonParser,function(req,res){
         collection.insert(req.body,function (err,result) {
           if(err){
             console.log('Error'+err);
+            res.status(500).send(sendData);
             return;
+          }else{
+            sendData.code = 200;
+            sendData.massage = "注册成功";
+            res.status(200).send(sendData);
           }
         });
       }else{
         sendData.code = 98;
-        sendData.massage = "改账号已存在！"
+        sendData.massage = "改账号已存在！";
+        res.status(200).send(sendData);
       }
     })
-    res.status(200).send(sendData);
 })
-
 module.exports = app;

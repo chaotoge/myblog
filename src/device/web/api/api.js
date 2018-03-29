@@ -7,7 +7,10 @@ var postUrl = "/api"
 
 var  Request  = {
   post:function(url,body,callback){
-      Vue.http.post(postUrl+url, body,callback).then(res => {callback(res)},err => {});
+      Vue.http.post(postUrl+url, body,callback).then(res => {
+        console.log(res,res.data);
+        callback(res.data);
+      },err => {});
   },
   get:function(url){
     Vue.http.get(url).then(res => {},err => {});

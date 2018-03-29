@@ -12,15 +12,23 @@ export default {
   register({commit},body){
     api.register(body,(res) => {
       commit('register',res);
+      console.log(res)
+      if(res.code == 200){
+        router.push({ name: 'Login'});
+      }else{
+        alert(res.massage);
+      }
     })
   },
   //登录
   login({commit},body){
     commonApi.login(body,(res) => {
-      console.log(body);
+      console.log(res);
       commit('login',res);
-      if(res.data.code == 0){
+      if(res.code == 200){
         router.push({name:'HomePage'});
+      }else{
+        alert(res.massage);
       }
     })
   }

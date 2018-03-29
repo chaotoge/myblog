@@ -51,9 +51,7 @@
       LinkLogin:LinkLogin
     },
     created(){
-      console.log(121)
       commonApi.token(function (res) {
-        console.log(res);
         setItem('token',res.token);
         setItem('pulickey',res.publickey);
       })

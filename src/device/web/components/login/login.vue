@@ -2,10 +2,10 @@
   <div class="login">
     <div class = "login-name">登录</div>
     <div class="user">
-      <i class = "icon iconfont icon-icon"></i> <input type="text" v-model="user.userName">
+      <i class = "icon iconfont icon-icon"></i> <input type="text" placeholder="用户名" v-model="user.userName">
     </div>
     <div class="password">
-      <i class = "icon iconfont icon-14"></i> <input type="password" v-model="user.userPassword">
+      <i class = "icon iconfont icon-14"></i> <input type="password" placeholder="密码" v-model="user.userPassword">
     </div>
     <div class="login-botton">
       <button @click = "submitUser">登录</button>
