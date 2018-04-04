@@ -6,15 +6,18 @@ var bodyParser = require('body-parser');
 var jwt = require('jsonwebtoken');
 var keys = require('./key');
 var crypto = require('crypto');
-// var JSEncrypt = require('jsencrypt')
+var path = require('path');
+
 var app = express();
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 var jsonParser = bodyParser.json();
-
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/";
 var db;
-app.use(express.static('assets'));
+
+app.use(urlencodedParser);
+app.use(jsonParser);
+// app.use(express.static(path.join(__dirname, '../src')));
 
 var sendData = {
   "code":0,

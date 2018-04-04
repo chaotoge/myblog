@@ -1,52 +1,36 @@
   <template>
   <div class="my-blog">
-    <div class = "main">
-      <div class="bar">
+      <header>
+        <div class="user">
+          <img src="" alt="">
+          <span>chaotoge</span>
+        </div>
         <ul>
           <li>javascript</li>
           <li>node.js</li>
         </ul>
-      </div>
-      <div class="container">
-        <div class="title">
+      </header>
+      <div class="body">
+        <aside>
           <ul>
-            <li>这里是你自己发表的内容</li>
-            <li>这里是你自己发表的内容</li>
+            <li>你自己发表的内容</li>
+            <li>这里表的内容</li>
             <li>这里是你自己发表的内容</li>
           </ul>
-        </div>
-        <div class="article">
-            <p>这是小白的零基础JavaScript全栈教程。
-
-              JavaScript是世界上最流行的脚本语言，因为你在电脑、手机、平板上浏览的所有的网页，以及无数基于HTML5的手机App，交互逻辑都是由JavaScript驱动的。
-
-              简单地说，JavaScript是一种运行在浏览器中的解释型的编程语言。
-
-              那么问题来了，为什么我们要学JavaScript？尤其是当你已经掌握了某些其他编程语言如Java、C++的情况下。
-
-              简单粗暴的回答就是：因为你没有选择。在Web世界里，只有JavaScript能跨平台、跨浏览器驱动网页，与用户交互。
-
-              Flash背后的ActionScript曾经流行过一阵子，不过随着移动应用的兴起，没有人用Flash开发手机App，所以它目前已经边缘化了。相反，随着HTML5在PC和移动端越来越流行，JavaScript变得更加重要了。并且，新兴的Node.js把JavaScript引入到了服务器端，JavaScript已经变成了全能型选手。
-
-              JavaScript一度被认为是一种玩具编程语言，它有很多缺陷，所以不被大多数后端开发人员所重视。很多人认为，写JavaScript代码很简单，并且JavaScript只是为了在网页上添加一点交互和动画效果。
-
-              但这是完全错误的理解。JavaScript确实很容易上手，但其精髓却不为大多数开发人员所熟知。编写高质量的JavaScript代码更是难上加难。
-
-              一个合格的开发人员应该精通JavaScript和其他编程语言。如果你已经掌握了其他编程语言，或者你还什么都不会，请立刻开始学习JavaScript，不要被Web时代所淘汰。
-
-              等等，你会问道，现在有这么多在线JavaScript教程和各种从入门到精通的JavaScript书籍，为什么我要选择这个教程？
-
-              原因是，这个教程：</p>
-        </div>
-        <div class="question">
-          <ul>
-            <li>这里是你自己发表的提问</li>
-            <li>这里是你自己发表的提问</li>
-            <li>这里是你自己发表的提问</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+        </aside>
+        <main>
+            <div class = "contain">
+              
+            </div>
+              <div class="question">
+                <ul>
+                  <li>这里是你自己发表的提问</li>
+                  <li>这里是你自己发表的提问</li>
+                  <li>这里是你自己发表的提问</li>
+                </ul>
+              </div>
+        </main>
+      </div>        
   </div>
 </template>
 
@@ -61,60 +45,54 @@
 </script>
 
 <style lang = "scss" scoped>
-  .main{
-    position: relative;
+  .my-blog{
+    height: 100%;
   }
-  .bar {
+  header {
     height:3rem;
     width:100%;
     background-color:rgb(10,150,210);
-  }
-  .bar ul{
-    height:3rem;
-    line-height: 3rem;
-    font-size:1rem;
-    background-color:rgb(10,150,210);
-    color:#fff;
-    min-width:1024px;
-    max-width:80%;
-    margin:0 auto;
+    display: flex;
+    justify-content:space-between;    
+    ul{
+      height: 100%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      white-space: nowrap;
+    }
     li{
-      width:5rem;
-      text-align: center;
-      float: right;
-    }
-    li:hover{
-      background-color: rgb(10,170,220);
+      padding: 0 20px;
+      color: #ffffff;
     }
   }
-  .container{
-    position: relative;
-    overflow: hidden;
-    min-width:1024px;
-    max-width:80%;
-    margin:0 auto;
-    div{
-      float: left;
-    }
-    .title{
-      width:15%;
-    }
-    .article{
-      width:70%;
-    }
-    .question{
-      width:15%;
-    }
-  }
-  .title,.question{
+  .body{
+    display: flex;
+    height: calc(100% - 3rem);
     li{
-      width: 100%;
-      height:2rem;
-      line-height: 2rem;
+      height: 35px;
+      line-height: 35px;
       overflow: hidden;
       text-overflow: ellipsis;
-      white-space:nowrap;
-    }
+    } 
   }
+  aside{
+    flex: 0 0 200px;
+    padding: 20px 0 0 20px;
+    background-color: #ffffff;   
+  }
+  main{
+    display: flex;
+  }
+  .contain{
+    margin: 0 10px;
+    background-color: #ffffff;
+  }
+  .question{
+    flex: 0 0 200px;
+    padding: 20px 0 0 20px;
+    background-color: #ffffff;
+  }
+  
 </style>
 

@@ -23,7 +23,6 @@ export default {
   //登录
   login({commit},body){
     commonApi.login(body,(res) => {
-      console.log(res);
       commit('login',res);
       if(res.code == 200){
         router.push({name:'HomePage'});

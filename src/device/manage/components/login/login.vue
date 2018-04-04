@@ -1,5 +1,5 @@
 <template>
-  <transition name="el-zoom-in-center" appear = "true">
+  <transition name="el-zoom-in-center">
     <div class="login">
       <div class = "logo">
         <img src="../../assets/timg.jpg" alt=""><span>@chaotoge blog 管理</span>
@@ -20,6 +20,8 @@
 </template>
 
 <script>
+  import crypto from 'crypto';
+  import commonApi from '../../../../commonApi/api';
   export default {
     data(){
       var validateUser = (rule, value, callback) => {
@@ -54,9 +56,31 @@
         }
       }
     },
+    created(){
+      commonApi.token(function(res){
+        window.sessionStorage.setItem('token',res.token);
+        window.sessionStorage.setItem('pulickey',res.publickey);
+      })
+    },
+    mounted(){
+
+    },
     methods:{
       submitForm(){
-
+        if(this.ruleForm2.user === '' || this.ruleForm2.pass === ''){
+          alert('账号或者密码不能为空')
+          return 
+        }
+        var _this = this;
+        var pulickey = window.sessionStorage.getItem('pulickey');
+        var encrypted = crypto.publicEncrypt(pulickey, Buffer.from(this.ruleForm2.pass)).toString('hex');
+        commonApi.login({"name":this.ruleForm2.user,"password":encrypted},function(data){
+          if(data.code == 200){
+            _this.$router.push({name:'Home'});
+          }else{
+            alert('用户或者密码错误');
+          }
+        })
       }
     }
   }

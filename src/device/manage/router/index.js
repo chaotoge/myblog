@@ -5,7 +5,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '../components/home/homepage'
 import Login from '../components/login/login'
-// import Note from '../components/note/note'
+import addText from '../components/home/addText'
+import textList from '../components/home/textList'
 
 Vue.use(Router)
 
@@ -14,16 +15,25 @@ export default new Router({
     {
       path: '/Home',
       name: 'Home',
-      component: Home
+      component: Home,
+      redirect:'/textList',
+      children:[
+        {
+          path:'/addText',
+          name: 'addText',
+          component: addText
+        },
+        {
+          path:'/textList',
+          name: 'textList',
+          component: textList
+        }
+      ]
     },{
       path:'/',
       name: 'Login',
       component: Login
-    }//,{
-    //   path:'/note',
-    //   name: 'Note',
-    //   component: Note
-    // }
+    }
   ]
 })
 
