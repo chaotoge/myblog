@@ -27,6 +27,26 @@ export default new Router({
           path:'/textList',
           name: 'textList',
           component: textList
+        },
+        {
+          path:'/nodeList',
+          name: 'nodeList',
+          component: textList
+        },
+        {
+          path:'/logList',
+          name: 'logList',
+          component: textList
+        },
+        {
+          path:'/lifeList',
+          name: 'lifeList',
+          component: textList
+        },
+        {
+          path:'/otherList',
+          name: 'otherList',
+          component: textList
         }
       ]
     },{

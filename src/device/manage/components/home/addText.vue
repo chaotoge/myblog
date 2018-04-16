@@ -3,7 +3,7 @@
         <h3>新增文章</h3>
         <el-form ref="form" :model="form" label-width="80px">
             <el-form-item label="发布类型">
-                <el-select v-model="form.region" placeholder="发布类型">
+                <el-select v-model="form.region" placeholder="发布类型" :disabled = "$route.query.status == 2">
                 <el-option label="javascript" value="1"></el-option>
                 <el-option label="node.js" value="2"></el-option>
                 <el-option label="笔记" value="3"></el-option>
@@ -25,25 +25,80 @@
 </template>
 
 <script>
+    import managerApi from '../../api/api';
 export default {
     data(){
         return {
             form:{
                 title:'',
-                digest:''
+                digest:'',
+                region:''
             },
             defaultMag:'',
             ueConfig:{}
         }
     },
+    mounted(){
+        if(this.$route.params.data){
+            this.form.title = this.$route.params.data.title;
+            this.form.digest = this.$route.params.data.digest;
+            this.form.region = this.$route.params.data.region;
+        }
+    },
     methods:{
         //asure
         asure(){
-            console.log(this.$refs.ue.getUEContent());
+            if(this.form.region == ''){
+                this.$notify({
+                    title: '警告',
+                    message: '请选择发布类型',
+                    type: 'warning'
+                });
+                return 
+            }else if(this.form.title == ''){
+                this.$notify({
+                    title: '警告',
+                    message: '请输入标题',
+                    type: 'warning'
+                });
+                return
+            }else if(this.form.digest == ''){
+                this.$notify({
+                    title: '警告',
+                    message: '请输入摘要',
+                    type: 'warning'
+                });
+                return
+            }
+            //$route.query.status == 1 新增模式   ==2 编辑模式
+            if(this.$route.query.status == 1){
+                managerApi.addText({
+                    "region":this.form.region,
+                    "title":this.form.title,
+                    "digest":this.form.digest,
+                    "content":this.$refs.ue.getUEContent()
+                },function(res){
+                    if(res.code == 200){
+
+                    }
+                })
+            }else{
+               managerApi.updateText({
+                   "textNo":this.$route.params.data.textNo,
+                    "title":this.form.title,
+                    "digest":this.form.digest,
+                    "content":this.$refs.ue.getUEContent()
+                },function(res){
+                    if(res.code == 200){
+                        
+                    }
+                }) 
+            }
+            
         },
         //cancel
         cancel(){
-            this.$router.push({name:'textList'});
+            this.$router.back();
         },
         change(data){
             this.defaultMag = data.content;

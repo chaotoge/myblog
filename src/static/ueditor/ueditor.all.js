@@ -25773,7 +25773,7 @@ UE.plugins["catchremoteimage"] = function() {
       catcherActionUrl = me.getActionUrl(me.getOpt("catcherActionName")),
       catcherUrlPrefix = me.getOpt("catcherUrlPrefix"),
       catcherFieldName = me.getOpt("catcherFieldName");
-
+    console.log(catcherActionUrl)
     var remoteImages = [],
       loadingIMG =  me.options.themePath + me.options.theme + '/images/spacer.gif',
       imgs = me.document.querySelectorAll('[style*="url"],img'),
@@ -25830,7 +25830,7 @@ UE.plugins["catchremoteimage"] = function() {
           } catch (e) {
             return;
           }
-
+          console.log(r,info);
           /* 获取源路径和新路径 */
           var i,
             j,
@@ -25904,8 +25904,8 @@ UE.plugins["catchremoteimage"] = function() {
     }
 
     function catchremoteimage(imgs, callbacks) {
-      var params =
-        utils.serializeParam(me.queryCommandValue("serverparam")) || "",
+      // console.log(imgs, callbacks)
+      var params = utils.serializeParam(me.queryCommandValue("serverparam")) || "",
         url = utils.formatUrl(
           catcherActionUrl +
             (catcherActionUrl.indexOf("?") == -1 ? "?" : "&") +
@@ -25918,8 +25918,9 @@ UE.plugins["catchremoteimage"] = function() {
           timeout: 60000, //单位：毫秒，回调请求超时设置。目标用户如果网速不是很快的话此处建议设置一个较大的数值
           onsuccess: callbacks["success"],
           onerror: callbacks["error"]
-        };
+        };        
       opt[catcherFieldName] = imgs;
+      // console.log(params,url, opt,isJsonp);
       ajax.request(url, opt);
     }
   });

@@ -1,5 +1,7 @@
-
-@import '//at.alicdn.com/t/font_534181_dt8tz29tllo0qkt9.css';
+/*
+引入iconfont 图标
+*/
+@import '//at.alicdn.com/t/font_534181_lns0lb6asupzxgvi.css';
 
 html,body{
     height:100%;
@@ -21,3 +23,9 @@ div,form,img,ul,ol,li,dl,dt,dd,p{
     padding: 0;
     border: 0;
 }
+a{
+    text-decoration:none;
+    out-line:none;
+    color: #333333;
+}
+

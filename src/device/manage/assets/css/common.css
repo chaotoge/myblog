@@ -40,7 +40,8 @@ C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/bin/scss:13:in `<top (require
 C:/Ruby23-x64/bin/scss:23:in `load'
 C:/Ruby23-x64/bin/scss:23:in `<main>'
 */
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Error: Invalid GBK character \"\xE5\"\A         on line 9 of common.scss\A \A 4: html,body{\A 5:     height:100%;\A 6:     width:100%;\A 7: }\A 8: body{\A 9:     font-family:微软雅黑;\A 10:     margin:0;\A 11:     padding:0;\A 12:     background: #FFF;\A 13:     font-size:16px;\A 14:     color:#000;"; }
+  body:before {
+    white-space: pre;
+    font-family: monospace;
+    content: "Error: Invalid GBK character \"\xE5\"\A         on line 9 of common.scss\A \A 4: html,body{\A 5:     height:100%;\A 6:     width:100%;\A 7: }\A 8: body{\A 9:     font-family:微软雅黑;\A 10:     margin:0;\A 11:     padding:0;\A 12:     background: #FFF;\A 13:     font-size:16px;\A 14:     color:#000;"; 
+  }
