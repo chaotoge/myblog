@@ -16,7 +16,10 @@ export default {
       },
       config: {
           type: Object
-      }
+      },
+      defaultMsg: {
+        type: String
+      },
     },
     data() {
       return {
@@ -26,10 +29,16 @@ export default {
     mounted() {
       //初始化UE
       const _this = this;
+      //创建
       this.editor = UE.getEditor('editor',this.config);
+      this.editor.addListener("ready", function () {
+        _this.editor.setContent(_this.defaultMsg); // 确保UE加载完成后，放入内容。
+      });
     },
-    destoryed() {
-      this.editor.destory();
+    destroyed() {
+      //要销毁之后再创建
+      // UE.delEditor('editor');
+      this.editor.destroy();
     },
     methods:{
       getUEContent: function(){

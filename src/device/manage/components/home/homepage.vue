@@ -4,7 +4,7 @@
             <div class="user">
                 <!-- <img src="../../assets/timg.jpg" alt=""> -->
                 <p>个人博客：</p>
-                <span>用户名</span>
+                <span>{{userName}}</span>
             </div>
             <div class="operate">
                 <router-link to="/"><i class = "icon iconfont icon-tuichu6"></i></router-link>                                
@@ -34,7 +34,9 @@ export default {
            //
            tableData:[],
            //新增博客弹窗
-           dialogTableVisible:false,        
+           dialogTableVisible:false,
+           //用户  
+           userName:window.sessionStorage.getItem('username')      
        }
    },
    methods:{

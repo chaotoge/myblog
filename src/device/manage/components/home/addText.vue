@@ -17,7 +17,7 @@
             </el-form-item>
         </el-form>
         <div class="ue">
-            <ueditor :value = "defaultMag" :config = "ueConfig" ref = "ue" @input = "change"></ueditor>
+            <ueditor :default-msg = "defaultMag" :config = "ueConfig" ref = "ue" @input = "change"></ueditor>
         </div>
         <el-button @click="cancel">取 消</el-button>
         <el-button type="primary" @click="asure">确 定</el-button>
@@ -43,11 +43,14 @@ export default {
             this.form.title = this.$route.params.data.title;
             this.form.digest = this.$route.params.data.digest;
             this.form.region = this.$route.params.data.region;
+            this.defaultMag = this.$route.params.data.content;
+            console.log(this.$route.params,this.defaultMag);
         }
     },
     methods:{
         //asure
         asure(){
+            let _this = this;
             if(this.form.region == ''){
                 this.$notify({
                     title: '警告',
@@ -79,7 +82,7 @@ export default {
                     "content":this.$refs.ue.getUEContent()
                 },function(res){
                     if(res.code == 200){
-
+                        _this.cancel();
                     }
                 })
             }else{
@@ -90,7 +93,7 @@ export default {
                     "content":this.$refs.ue.getUEContent()
                 },function(res){
                     if(res.code == 200){
-                        
+                        _this.cancel();
                     }
                 }) 
             }

@@ -60,7 +60,7 @@ export default {
             this.$router.push({name:'addText',query:{status:1}});
         },
         //editorText
-        editorText(itemData){
+        editorText(itemData){           
             this.$router.push({name:'addText',query:{status:2},params:{data:itemData}});
         },
         //removeText

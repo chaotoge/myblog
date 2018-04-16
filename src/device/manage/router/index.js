@@ -16,7 +16,7 @@ export default new Router({
       path: '/Home',
       name: 'Home',
       component: Home,
-      redirect:'/textList',
+      redirect:{ name: 'textList' },
       children:[
         {
           path:'/addText',

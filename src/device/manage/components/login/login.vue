@@ -76,7 +76,8 @@
         var encrypted = crypto.publicEncrypt(pulickey, Buffer.from(this.ruleForm2.pass)).toString('hex');
         commonApi.login({"name":this.ruleForm2.user,"password":encrypted},function(data){
           if(data.code == 200){
-            _this.$router.push({name:'Home'});
+            window.sessionStorage.setItem('username',_this.ruleForm2.user)
+            _this.$router.push({name:'Home',query:{id:'1'}});
           }else{
             alert('用户或者密码错误');
           }
